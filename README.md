@@ -61,6 +61,12 @@ The path to your env file.
 
 Default: `.env`
 
+# Limitations
+If you find any other limitations feel free to contact the maintainers.\
+For now, these are the ones we've found:
+
+- You can't set a different type for each variable
+
 
 # Maintainers
 - Created by [@jgtvares](https://github.com/jgtvares)
