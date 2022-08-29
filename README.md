@@ -32,7 +32,7 @@ vercel-sync:
 # Arguments
 
 ### `project`
-The name of your Doppler project.
+The name of your Vercel project.
 
 ### `team_id`
 The unique id of your Vercel team.
