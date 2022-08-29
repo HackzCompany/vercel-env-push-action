@@ -1,0 +1,46 @@
+name: Vercel Envs Push
+description: Push variables in a .env format to your Vercel project
+branding:
+  icon: triangle
+  color: gray-dark
+inputs:
+  project:
+    description: Vercel project name
+    required: true
+  team_id:
+    description: The unique ID of your Vercel team
+    required: true
+  token:
+    description: Vercel token
+    required: true
+  environments:
+    description: Environments to target variables. If multiple, separate by comma, for example "development,preview"
+    required: false
+    default: development
+  env_type:
+    description: The variable type. Allowed values are 'system', 'encrypted', 'plain' or 'secret'.
+    required: true
+    default: encrypted
+  env_file:
+    description: The path to your env file
+    required: false
+    default: .env
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 14
+    - name: Install dependencies
+      shell: bash
+      run: npm i
+    - name: Run script
+      env:
+        VERCEL_PROJECT: ${{ inputs.project }}
+        VERCEL_TEAM_ID: ${{ inputs.team_id }}
+        VERCEL_TOKEN: ${{ inputs.token }}
+        VERCEL_ENVIRONMENTS: ${{ inputs.environments }}
+        ENV_TYPE: ${{ inputs.env_type }}
+      shell: bash
+      run: npm start -- ${{ inputs.env_file }}
