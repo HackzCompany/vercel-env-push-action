@@ -72,8 +72,8 @@ Default: `.env`
 If you find any other limitations feel free to contact the maintainers or contribute.\
 For now, these are the ones we've found:
 
-- You can't set a different type for each variable.
-- Values with line breaks are not supported. The env file is splitted by the character `\n`, then `=` to get keys and values.
+- [ ] You can't set a different type for each variable.
+- [x] Values with line breaks are not supported.
 
 
 # Maintainers
