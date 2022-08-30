@@ -26,7 +26,7 @@ vercel-sync:
     needs: [install-deps, load-env] # You need to load your .env file before
     name: Vercel Sync
     steps:
-      - uses: hackzcompany/vercel-env-push-action@v1
+      - uses: hackzcompany/vercel-env-push-action@v2
         with:
           project: my-project
           team_id: ${{ secrets.VERCEL_TEAM_ID }}
