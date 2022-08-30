@@ -62,12 +62,16 @@ The path to your env file.
 Default: `.env`
 
 # Limitations
-If you find any other limitations feel free to contact the maintainers.\
+If you find any other limitations feel free to contact the maintainers or contribute.\
 For now, these are the ones we've found:
 
-- You can't set a different type for each variable
+- You can't set a different type for each variable.
+- Values with line breaks are not supported. The env file is splitted by the character `\n`, then `=` to get keys and values.
 
 
 # Maintainers
 - Created by [@jgtvares](https://github.com/jgtvares)
 - Maintained by [@HackzCo](https://github.com/HackzCompany) team
+
+# Contributing
+Open a pull request pointing to `main` and wait for our review.
