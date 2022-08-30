@@ -27,20 +27,5 @@ inputs:
     default: .env
 
 runs:
-  using: composite
-  steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 14
-    - name: Install dependencies
-      shell: bash
-      run: npm i
-    - name: Run script
-      env:
-        VERCEL_PROJECT: ${{ inputs.project }}
-        VERCEL_TEAM_ID: ${{ inputs.team_id }}
-        VERCEL_TOKEN: ${{ inputs.token }}
-        VERCEL_ENVIRONMENTS: ${{ inputs.environments }}
-        ENV_TYPE: ${{ inputs.env_type }}
-      shell: bash
-      run: npm start -- ${{ inputs.env_file }}
+  using: node16
+  main: index.js

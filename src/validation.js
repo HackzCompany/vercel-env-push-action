@@ -1,18 +1,14 @@
-const { vercel } = require('./config');
+const { vercel, envFile } = require('./config');
 const { ConfigValidationError } = require('./errors');
 
 
-const validateConfig = (additionalParams) => {
+const validateConfig = () => {
     console.log("Validating configuration...");
     Object.keys(vercel).forEach((key) => {
         if (!vercel[key]) throw new ConfigValidationError(key, vercel[key]);
     });
 
-    if (additionalParams) {
-        Object.keys(additionalParams).forEach((key) => {
-            if (!additionalParams[key]) throw new ConfigValidationError(key, additionalParams[key]);
-        });
-    }
+    if (!envFile) throw new ConfigValidationError('env_file', envFile);
 };
 
 
