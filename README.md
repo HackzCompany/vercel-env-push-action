@@ -1,6 +1,13 @@
 # vercel-env-push-action
 Add multiple environment variables to Vercel from a .env file
 
+# Requirements
+If you intend to contribute, you'll need to install `vercel/ncc` globally to build the code into a single module.\
+Install running:
+```bash
+npm i -g @vercel/ncc
+```
+
 # The logic behind
 This action's logic follows these steps:
 
@@ -74,4 +81,9 @@ For now, these are the ones we've found:
 - Maintained by [@HackzCo](https://github.com/HackzCompany) team
 
 # Contributing
-Open a pull request pointing to `main` and wait for our review.
+Open a pull request pointing to `main` and wait for our review.\
+Also, don't forget to build the code in a single module in order to follow the pattern from Github Actions.\
+To build the code run:
+```bash
+ncc build index.js --license licenses.txt
+```
