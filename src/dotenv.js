@@ -1,4 +1,5 @@
 const { readFileSync } = require('fs');
+const { parse } = require('dotenv');
 
 const { vercel } = require('./config');
 
@@ -6,13 +7,13 @@ const { vercel } = require('./config');
 const dotEnvToObject = (dotEnvPath) => {
     console.log("Reading dotenv file:", dotEnvPath);
     const dotEnv = readFileSync(dotEnvPath, { encoding: 'utf-8' });
-    const variables = dotEnv.split('\n').filter(v => v).map(v => {
-        const [key, value] = v.split('=');
+    const parsed = parse(dotEnv);
+    const variables = Object.keys(parsed).map((key) => {
         return {
             key,
             target: vercel.environments,
             type: vercel.envType,
-            value
+            value: parsed[key],
         };
     });
     return variables;
