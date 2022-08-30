@@ -18,7 +18,7 @@ const patchVercelVars = async (vars) => {
         }
         else {
             console.log("Updating environment variable with key:", key);
-            axios.patch(`${api}/v9/projects/${project}/env/${id}?teamId=${teamId}`, variables, { headers, data: { value } })
+            axios.patch(`${api}/v9/projects/${project}/env/${id}?teamId=${teamId}`, { headers, data: { value } })
             .then((response) => responses.push(response.data))
             .catch((err) => {
                 console.log(err.response.data);
