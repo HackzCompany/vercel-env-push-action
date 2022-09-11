@@ -15,15 +15,20 @@ const patchVercelVars = async (vars) => {
             console.log("New variable identified:", vars[i]);
             console.log("Saving it for later...");
             newVars.push(vars[i]);
-        }
-        else {
+        } else {
             console.log("Updating environment variable with key:", key);
-            await axios.patch(`${api}/v9/projects/${project}/env/${id}?teamId=${teamId}`, { value }, { headers })
-            .then((response) => responses.push(response.data))
-            .catch((err) => {
-                console.log(err.response.data);
-                throw err;
-            });
+            const { data } = await axios
+                .patch(
+                    `${api}/v9/projects/${project}/env/${id}?teamId=${teamId}`,
+                    { value },
+                    { headers }
+                )
+                .catch((err) => {
+                    console.log(err.response.data);
+                    throw err;
+                });
+
+            responses.push(data);
         }
     }
 
