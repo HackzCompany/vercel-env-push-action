@@ -4,15 +4,16 @@ const core = require('@actions/core');
 const { dotEnvToObject, filterChangedValues } = require("./src/dotenv");
 const { validateConfig } = require("./src/validation");
 const { getVarsFromVercel, patchVercelVars, pushToVercel } = require("./src/vercel");
-const { envFile } = require('./src/config');
+const { envFile, vercel } = require('./src/config');
 
 
 (async () => {
     try {
         validateConfig();
         const dotenv = dotEnvToObject(envFile);
-        const vercelVars = await getVarsFromVercel();
-        const changedVars = filterChangedValues(dotenv, vercelVars.envs);
+        const { envs } = await getVarsFromVercel();
+        const vercelVarsByTarget = envs.filter(e => e.target.join(',') === vercel.environments.join(','));
+        const changedVars = filterChangedValues(dotenv, vercelVarsByTarget);
 
         if (changedVars.length) {
             const { responses, newVars } = await patchVercelVars(changedVars);

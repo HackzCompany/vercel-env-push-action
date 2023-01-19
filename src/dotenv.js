@@ -28,7 +28,7 @@ const filterChangedValues = (dotenv, vercelVars) => {
             return objD;
         }
         else if (objV.value !== objD.value) {
-            objD.id = objV.id
+            objD.id = objV.id;
             return objD;
         };
     });
