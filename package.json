@@ -1,6 +1,6 @@
 {
   "name": "vercel-env-push-action",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Add multiple environment variables to Vercel from a .env file",
   "main": "index.js",
   "scripts": {
