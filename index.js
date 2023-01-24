@@ -12,7 +12,13 @@ const { envFile, vercel } = require('./src/config');
         validateConfig();
         const dotenv = dotEnvToObject(envFile);
         const { envs } = await getVarsFromVercel();
-        const vercelVarsByTarget = envs.filter(e => e.target.sort().join(',') === vercel.environments.sort().join(','));
+        const vercelVarsByTarget = envs.filter(e => {
+            const vercelTargets = e.target.sort().join(',');
+            const inputTargets = vercel.environments.sort().join(',');
+            if ((vercelTargets === inputTargets) || (vercelTargets.includes(inputTargets))) {
+                return e;
+            }
+        });
         const changedVars = filterChangedValues(dotenv, vercelVarsByTarget);
 
         if (changedVars.length) {
