@@ -10,7 +10,7 @@ const patchVercelVars = async (vars) => {
     const responses = [];
     const newVars = [];
     for (let i = 0; i < vars.length; i++) {
-        const { id, key, value, type, ...rest } = vars[i];
+        const { id, key, value, type, target, ...rest } = vars[i];
         if (rest.new) {
             console.log("New variable identified:", vars[i]);
             console.log("Saving it for later...");
@@ -20,7 +20,7 @@ const patchVercelVars = async (vars) => {
             const { data } = await axios
                 .patch(
                     `${api}/v9/projects/${project}/env/${id}?teamId=${teamId}`,
-                    { key, value, type, },
+                    { key, value, type, target, },
                     { headers }
                 )
                 .catch((err) => {
