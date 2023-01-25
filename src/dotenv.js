@@ -23,7 +23,7 @@ const filterChangedValues = (dotenv, vercelVars) => {
     const changed = dotenv.map(d => {
         const objV = vercelVars[vercelVars.map(v => v?.key).indexOf(d.key)];
         const objD = dotenv[dotenv.map(d2 => d2.key).indexOf(d.key)];
-        if (!objV && objD) {
+        if ((!objV && objD) || !(objV.target.sort().join(',')).includes(vercel.environments.sort().join(','))) {
             objD.new = true;
             return objD;
         }
